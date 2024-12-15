@@ -9,7 +9,8 @@ import (
 func UserRoutes(api fiber.Router) {
 	user := api.Group("/user")
 
-	api.Use(middleware.AuthMiddleware(), middleware.Permissions("ADMIN"))
+	api.Use(middleware.AuthMiddleware)
 
 	user.Get("/", controllers.ListAllUsers)
+	user.Get("/info", controllers.GetCurrentUser)
 }
